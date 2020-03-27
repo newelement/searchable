@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 /**
  * Trait SearchableTrait
@@ -209,7 +210,7 @@ trait SearchableTrait
 
             foreach ($this->getColumns() as $column => $relevance) {
                 array_map(function ($join) use ($column, $query) {
-                    if (str_contains($column, $join)) {
+                    if (Str::contains($column, $join)) {
                         $query->groupBy($column);
                     }
                 }, $joins);
